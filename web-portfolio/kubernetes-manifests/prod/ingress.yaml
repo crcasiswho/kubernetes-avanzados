@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-prod-ingress
+  namespace: portfolio-prod
+  annotations:
+   kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: portfolio-prod.cricapartners.es
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: web
+              port:
+                number: 80
+  ingressClassName: nginx
